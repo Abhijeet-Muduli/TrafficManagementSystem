@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vehicle Management System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon">V</div>
+        <div>
+          <div class="brand-name">VehicleMS</div>
+          <div class="brand-tag">Management System</div>
+        </div>
+      </div>
+      <div class="header-stats">
+        <div class="hs-item">
+          <span class="hs-val" id="statTotal">0</span>
+          <span class="hs-label">Total</span>
+        </div>
+        <div class="hs-divider"></div>
+        <div class="hs-item">
+          <span class="hs-val green" id="statActive">0</span>
+          <span class="hs-label">Active</span>
+        </div>
+        <div class="hs-divider"></div>
+        <div class="hs-item">
+          <span class="hs-val red" id="statRenewals">0</span>
+          <span class="hs-label">Renewals</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="page">
+
+    <!-- FORM CARD -->
+    <section class="card form-card">
+      <div class="card-header">
+        <h2 class="card-title">Register Vehicle</h2>
+        <span class="card-sub">Fill all required fields *</span>
+      </div>
+
+      <div id="vehicle-form" class="form-grid">
+
+        <div class="field">
+          <label for="vehicleId">Vehicle ID *</label>
+          <input type="number" id="vehicleId" placeholder="e.g. 101"/>
+        </div>
+
+        <div class="field">
+          <label for="make">Make *</label>
+          <input type="text" id="make" placeholder="e.g. Toyota"/>
+        </div>
+
+        <div class="field">
+          <label for="model">Model *</label>
+          <input type="text" id="model" placeholder="e.g. Camry"/>
+        </div>
+
+        <div class="field">
+          <label for="year">Year *</label>
+          <input type="number" id="year" placeholder="e.g. 2020" min="1886" max="2025"/>
+        </div>
+
+        <div class="field">
+          <label for="color">Color</label>
+          <input type="text" id="color" placeholder="e.g. White"/>
+        </div>
+
+        <div class="field">
+          <label for="owner">Owner *</label>
+          <input type="text" id="owner" placeholder="Full name"/>
+        </div>
+
+        <div class="field">
+          <label for="licensePlate">License Plate *</label>
+          <input type="text" id="licensePlate" placeholder="e.g. ABC1234"/>
+        </div>
+
+        <div class="field">
+          <label for="mileage">Mileage</label>
+          <input type="number" id="mileage" placeholder="e.g. 15000" min="0"/>
+        </div>
+
+        <div class="field full">
+          <label for="status">Status</label>
+          <select id="status">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+            <option value="Renewal Required">Renewal Required</option>
+          </select>
+        </div>
+
+        <div class="form-actions full">
+          <input type="submit" id="submitbtn" value="Submit Vehicle"/>
+          <button type="button" class="btn-outline" onclick="clearForm()">Clear</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TABLE CARD -->
+    <section class="card table-card">
+      <div class="card-header">
+        <h2 class="card-title">Vehicle Registry</h2>
+        <div class="table-controls">
+          <input type="text" id="searchBox" class="search-input"
+                 placeholder="Search..." oninput="filterTable()"/>
+          <select id="statusFilter" class="filter-select" onchange="filterTable()">
+            <option value="">All Status</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+            <option value="Renewal Required">Renewal Required</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table id="vehicleTable">
+          <thead>
+            <tr>
+              <th>ID</th><th>Make</th><th>Model</th><th>Year</th>
+              <th>Color</th><th>Owner</th><th>License Plate</th>
+              <th>Mileage</th><th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="vehicleTableBody">
+            <tr class="empty-row">
+              <td colspan="9">No vehicles registered yet.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-footer">
+        Total Vehicles: <strong id="vehicleCount">0</strong>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
