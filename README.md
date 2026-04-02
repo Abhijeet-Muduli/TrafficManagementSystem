@@ -57,3 +57,13 @@ CREATE TABLE vehicles (
    git add README.md
    git commit -m "Add project documentation (README)"
    git push
+---
+
+### 2. For running it on port:
+Open the MySQL Workbench, use the sql connector
+Run the following commands on terminal:
+cd demo
+mvn clean install
+mvn dependency:copy-dependencies
+java -cp "target/classes;target/dependency/*" com.example.App
+It will run on http://localhost:8080
